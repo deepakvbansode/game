@@ -30,3 +30,6 @@
     transform: rotate(360deg);
   }
 }
+button.active {
+  border: 1px solid red;
+}
