@@ -11,15 +11,18 @@ class DashboardContainer extends Component {
       data: []
     };
     this.changeGame = this.changeGame.bind(this);
+    this.getData = this.getData.bind(this);
+  }
+
+  componentDidMount() {
+    console.log("commponent Did mount");
+    this.getData("FB");
   }
 
   changeGame(selectedGame) {
-    // let data = this.getGameData(selectedGame);
-    // this.setState({
-    //   game: selectedGame,
-    //   data: data
-    // });
-    //ajax call
+    this.getData(selectedGame);
+  }
+  getData(selectedGame) {
     let url = "http://demo8926664.mockable.io/games-fb";
     if (selectedGame === "BB") url = "http://demo8926664.mockable.io/games-bb";
     fetch(url)
@@ -33,7 +36,6 @@ class DashboardContainer extends Component {
           data: myJson
         });
       });
-    //set data
   }
   getGameData(game) {
     if (game === "FB") {
@@ -84,7 +86,11 @@ class DashboardContainer extends Component {
           filter={this.state.filter}
           changeGame={this.changeGame}
         />
-        <ListComponent matches={this.state.data} game={this.state.game} />
+        {this.state.game === "FB" || this.state.game === "BB" ? (
+          <ListComponent matches={this.state.data} game={this.state.game} />
+        ) : (
+          <div>Api not available</div>
+        )}
       </div>
     );
   }
