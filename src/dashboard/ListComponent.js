@@ -23,7 +23,20 @@ export default class ListComponent extends React.Component {
   componentWillUnmount() {
     console.log("list will unmount");
   }
+  componentWillReceiveProps() {
+    console.log("component will recieve props called");
+  }
+  componentWillUpdate() {
+    console.log("List conponent will update");
+  }
+  componentDidUpdate() {
+    console.log("List conponent Did update");
+  }
+  shouldComponentUpdate(prevProps) {
+    return prevProps.matches !== this.props.matches;
+  }
   render() {
+    console.log("rendering list compenent");
     let listOfMatches = this.props.matches.map((match, index) => {
       return (
         <div key={index}>
@@ -32,6 +45,11 @@ export default class ListComponent extends React.Component {
         </div>
       );
     });
-    return <div>{listOfMatches}</div>;
+    return (
+      <div>
+        <h1>{this.props.game}</h1>
+        {listOfMatches}
+      </div>
+    );
   }
 }

@@ -53,9 +53,15 @@ export default class FilterComponent extends React.Component {
           </button>
         </div>
         <div>
-          <button>Upcoming</button>
-          <button>Previous</button>
-          <button>Live </button>
+          <button onClick={this.props.changeFilter.bind(null, "Upcomining")}>
+            Upcoming
+          </button>
+          <button onClick={this.props.changeFilter.bind(null, "Previous")}>
+            Previous
+          </button>
+          <button onClick={this.props.changeFilter.bind(null, "Live")}>
+            Live{" "}
+          </button>
         </div>
       </div>
     );

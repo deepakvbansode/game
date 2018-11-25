@@ -11,6 +11,7 @@ class DashboardContainer extends Component {
       data: []
     };
     this.changeGame = this.changeGame.bind(this);
+    this.changeFilter = this.changeFilter.bind(this);
     this.getData = this.getData.bind(this);
   }
 
@@ -21,6 +22,11 @@ class DashboardContainer extends Component {
 
   changeGame(selectedGame) {
     this.getData(selectedGame);
+  }
+  changeFilter(newStatus) {
+    this.setState({
+      filter: newStatus
+    });
   }
   getData(selectedGame) {
     let url = "http://demo8926664.mockable.io/games-fb";
@@ -85,9 +91,14 @@ class DashboardContainer extends Component {
           game={this.state.game}
           filter={this.state.filter}
           changeGame={this.changeGame}
+          changeFilter={this.changeFilter}
         />
         {this.state.game === "FB" || this.state.game === "BB" ? (
-          <ListComponent matches={this.state.data} game={this.state.game} />
+          <ListComponent
+            matches={this.state.data}
+            game={this.state.game}
+            filter={this.state.filter}
+          />
         ) : (
           <div>Api not available</div>
         )}
